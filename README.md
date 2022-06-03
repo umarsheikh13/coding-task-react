@@ -6,6 +6,10 @@ This coding task app was bootstrapped using `create-react-app`. It is styled app
 yarn && yarn start
 ```
 
+Alternatively you can view the app here:
+
+https://roaring-tiramisu-c0c344.netlify.app/
+
 ### Packages
 
 This is a summary of the third party packages used in the app.
