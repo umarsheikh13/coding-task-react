@@ -107,7 +107,7 @@ function App() {
   const [locations, setLocationsValue] = useState<detailPropTypes[]>([]);
   const [statuses, setStatusesValue] = useState<detailPropTypes[]>([]);
   const [themes, setThemesValue] = useState<detailPropTypes[]>([]);
-  const [donations, setDonationsValue] = useState([]);
+  const [donations, setDonationsValue] = useState<null | donationPropTypes[]>(null);
   const [modalValue, setModalValue] = useState(false);
   const [formData, setFormData] = useState<{[key: string]: any;}>({});
   const [formErrors, setFormErrorsValue] = useState<{[key: string]: any;}>({});
@@ -126,9 +126,9 @@ function App() {
 
   const filteredDonations = () => {
     if (filterStatus === 'all') {
-      return donations;
+      return donations || [];
     }
-    return donations.filter((item: donationPropTypes) => item.status.id === filterStatus);
+    return (donations) ? donations.filter((item: donationPropTypes) => item.status.id === filterStatus) : [];
   };
 
   // Handle form field input and attach to state
@@ -198,7 +198,7 @@ function App() {
 
     // Check if the donation name is unique
 
-    if (!('name' in errorKeys) && donations.filter((item: donationPropTypes) => item.name === formData.name).length > 0) {
+    if (!('name' in errorKeys) && donations && donations.filter((item: donationPropTypes) => item.name === formData.name).length > 0) {
       valid = false;
       errorKeys.name = 'This name is already being used';
     }
