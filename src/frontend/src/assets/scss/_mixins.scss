@@ -1,0 +1,8 @@
+
+// Media query mixin
+
+@mixin mq() {
+    @media screen and (min-width: 600px) {
+        @content;
+    }
+}

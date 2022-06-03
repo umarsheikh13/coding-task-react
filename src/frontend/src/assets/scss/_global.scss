@@ -1,0 +1,309 @@
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: $gray-100;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 14px;
+}
+
+a, button {
+    transition: 0.25s;
+}
+
+.app {
+
+    max-width: 800px;
+    padding: 30px 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__loading {
+
+        background-color: rgba(255, 255, 255, 0.8);
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        &:after {
+            content: "";
+            border-radius: 1000px;
+            animation: rotate-it 1s infinite;
+            display: block;
+            height: 32px;
+            width: 32px;
+            border-top: 4px solid $black;
+            border-right: 4px solid $black;
+            border-bottom: 4px solid $black;
+            border-left: 4px solid transparent;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -12px 0 0 -12px;
+        }
+
+    }
+
+    &__header {
+
+        h1 {
+            margin: 0 0 30px 0;
+            padding: 0 0 10px 0;
+            border-bottom: 1px solid $gray-400;
+            display: flex;
+            justify-content: space-between;
+        }
+
+    }
+
+    &__actions {
+
+        margin-bottom: 10px;
+
+        strong {
+
+            margin-right: auto;
+            display: block;
+            margin-bottom: 10px;
+
+            @include mq() {
+                margin-bottom: 0;
+            }
+
+        }
+
+        select {
+
+            border-radius: $border-radius;
+            box-shadow: 0 2px 5px $gray-300;
+            border: 1px solid $gray-300;
+            margin-bottom: 10px;
+            padding: 7px 12px;
+            width: 100%;
+
+            @include mq() {
+                margin-bottom: 0;
+                margin-right: 10px;
+                width: auto;
+            }
+
+        }
+
+        button {
+
+            width: 100%;
+
+            @include mq() {
+                width: auto;
+            }
+
+        }
+
+        @include mq() {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+    }
+
+    &__list {
+
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        box-shadow: 0 5px 10px $gray-300;
+        border-radius: $border-radius;
+        border: 1px solid $blue;
+        overflow: hidden;
+
+        li {
+
+            background-color: $white;
+            border-top: 1px solid $blue;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+
+            &:first-child {
+                border-top: 0 none;
+            }
+
+            &.is-loading,
+            &.is-none {
+                display: block;
+                text-align: center;
+            }
+
+            & > div {
+
+                width: 33.33%;
+
+                &.is-active {
+                    color: $green;
+                }
+
+                &.is-awaitingApproval {
+                    color: $orange;
+                }
+
+                &.is-inactive {
+                    color: $red;
+                }
+
+                &:first-child {
+                    padding-right: 10px;
+                    text-align: left;
+                }
+
+                &:nth-child(2),
+                &:nth-child(3),
+                &:nth-child(4) {
+                    text-align: center;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+
+                &:nth-child(2),
+                &:nth-child(3) {
+
+                    display: none;
+
+                    @include mq() {
+                        display: block;
+                    }
+
+                }
+
+                &:last-child {
+                    text-align: right;
+                    color: $blue;
+                    padding-left: 10px;
+                }
+
+                small {
+                    color: $gray-600;
+                }
+
+                @include mq() {
+                    width: 20%;
+                }
+
+            }
+
+        }
+
+    }
+
+    &__error {
+        background-color: lighten($red, 45%);
+        padding: 15px;
+        text-align: center;
+        color: $red;
+        margin-top: 20px;
+        border-radius: $border-radius;
+    }
+
+    &__modal {
+
+        background-color: rgba(255, 255, 255, 0.8);
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        form {
+
+            background-color: $white;
+            border-radius: $border-radius;
+            box-shadow: 0 10px 20px $gray-400;
+            margin: 30px;
+            padding: 30px;
+            position: relative;
+
+            h2 {
+                font-weight: normal;
+                margin: 0 0 20px 0;
+                color: $blue;
+            }
+
+            div {
+
+                margin: 0 0 15px;
+
+                p {
+
+                    margin: 5px 0 0 0;
+                    color: $gray-600;
+
+                    &.is-error {
+                        color: $red;
+                    }
+
+                }
+
+                label {
+                    font-weight: bold;
+                    display: block;
+                    margin-bottom: 7px;
+                }
+
+                input, select {
+                    border: 1px solid $gray-400;
+                    border-radius: $border-radius;
+                    padding: 7px 12px;
+                    width: 100%;
+                }
+
+            }
+
+            button:first-child {
+
+                background-color: transparent;
+                position: absolute;
+                font-size: 24px;
+                color: $gray-500;
+                border: 0 none;
+                top: 5px;
+                right: 5px;
+
+                &:hover {
+                    color: $gray-700;
+                }
+
+                @include mq() {
+                    top: 15px;
+                    right: 15px;
+                }
+
+            }
+
+            button:last-child {
+
+                width: 100%;
+                margin-top: 10px;
+
+                @include mq() {
+                    width: auto;
+                }
+
+            }
+
+            @include mq() {
+                max-width: 400px;
+                margin: 30px auto;
+                padding: 50px;
+            }
+
+        }
+
+    }
+
+}
